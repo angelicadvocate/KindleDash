@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>KindleDash Configurator</title>
+<link rel="stylesheet" href="style.css" />
+
+</head>
+<body>
+
+<header>
+  <h1>⚡ KindleDash Configurator</h1>
+  <div class="header-buttons">
+    <button class="icon-btn" id="saveConfig">💾 Save</button>
+    <button class="icon-btn" id="exportConfig">📤 Export</button>
+    <button class="icon-btn" id="settingsToggle" title="Global Settings">⚙️</button>
+  </div>
+</header>
+
+<div id="globalSettings">
+  <h2>🌐 Global Settings</h2>
+  <label>
+    Global Invert
+    <input type="checkbox" id="globalInvert" />
+    <span class="tooltip">Invert all images by default</span>
+  </label>
+
+  <label>
+    Default Scrape Interval (minutes)
+    <input type="number" id="defaultInterval" value="5" min="1" />
+  </label>
+
+  <label>
+    Max Retries
+    <input type="number" id="maxRetries" value="3" min="0" />
+  </label>
+
+  <label>
+    Cache Duration (minutes)
+    <input type="number" id="cacheDuration" value="30" min="0" />
+  </label>
+</div>
+
+<div class="section">
+  <h2>🖼️ Slides Configuration</h2>
+  <label>
+    Number of Slides
+    <input type="number" id="numSlides" min="1" max="4" value="1" />
+  </label>
+  <div id="slidesContainer"></div>
+</div>
+
+<div class="section">
+  <h2>⏰ Overlay Settings</h2>
+
+  <label>
+    Show Clock
+    <input type="checkbox" id="showClock" />
+  </label>
+
+  <label>
+    Show Date
+    <input type="checkbox" id="showDate" />
+  </label>
+
+  <label>
+    Overlay Position
+    <select id="overlayPosition">
+      <option value="none">None</option>
+      <option value="top">Top third</option>
+      <option value="bottom">Bottom third</option>
+    </select>
+  </label>
+
+  <label>
+    Text Alignment
+    <select id="overlayAlign">
+      <option value="center">Centered</option>
+      <option value="left">Left</option>
+      <option value="right">Right</option>
+    </select>
+  </label>
+
+  <label>
+    Font Style
+    <select id="fontFamily">
+      <option value="sans-serif">Sans</option>
+      <option value="serif">Serif</option>
+      <option value="monospace">Mono</option>
+    </select>
+  </label>
+
+  <label>
+    Font Size
+    <select id="fontSize">
+      <option value="small">Small</option>
+      <option value="medium" selected>Medium</option>
+      <option value="large">Large</option>
+    </select>
+  </label>
+</div>
+
+<script>
+  const settingsToggle = document.getElementById("settingsToggle");
+  const globalSettings = document.getElementById("globalSettings");
+  const numSlides = document.getElementById("numSlides");
+  const slidesContainer = document.getElementById("slidesContainer");
+  const saveConfig = document.getElementById("saveConfig");
+  const exportConfig = document.getElementById("exportConfig");
+
+  settingsToggle.onclick = () => {
+    globalSettings.style.display =
+      globalSettings.style.display === "none" ? "block" : "none";
+  };
+
+  function createSlide(index) {
+    const div = document.createElement("div");
+    div.className = "slide";
+    div.innerHTML = `
+      <h3>Slide ${index + 1}</h3>
+      <label>
+        URL
+        <input type="text" placeholder="https://example.com" class="slideUrl" />
+      </label>
+      <div class="toggle">
+        <label>Invert <input type="checkbox" class="slideInvert" /></label>
+        <span class="tooltip">Invert colors for better e-ink visibility</span>
+      </div>
+      <label>
+        Scrape Interval (minutes)
+        <input type="number" value="5" min="1" class="slideInterval" />
+      </label>
+      <button class="testSlide">Test Slide ${index + 1}</button>
+      <div class="slidePreview">
+        <p>No preview yet.</p>
+      </div>
+    `;
+
+    const testButton = div.querySelector(".testSlide");
+    const preview = div.querySelector(".slidePreview");
+
+    testButton.onclick = () => {
+      preview.innerHTML = "<p>Fetching preview...</p>";
+      setTimeout(() => {
+        preview.innerHTML = `<img src="https://placehold.co/400x300?text=Slide+${index + 1}+Preview" alt="Preview" />`;
+      }, 1000);
+    };
+
+    return div;
+  }
+
+  function updateSlides() {
+    slidesContainer.innerHTML = "";
+    const count = parseInt(numSlides.value);
+    for (let i = 0; i < count; i++) {
+      slidesContainer.appendChild(createSlide(i));
+    }
+  }
+
+  function gatherConfig() {
+    const slides = Array.from(document.querySelectorAll(".slide")).map(slide => ({
+      url: slide.querySelector(".slideUrl").value,
+      invert: slide.querySelector(".slideInvert").checked,
+      interval: parseInt(slide.querySelector(".slideInterval").value)
+    }));
+
+    return {
+      global: {
+        invert: document.getElementById("globalInvert").checked,
+        defaultInterval: parseInt(document.getElementById("defaultInterval").value),
+        maxRetries: parseInt(document.getElementById("maxRetries").value),
+        cacheDuration: parseInt(document.getElementById("cacheDuration").value)
+      },
+      overlay: {
+        showClock: document.getElementById("showClock").checked,
+        showDate: document.getElementById("showDate").checked,
+        position: document.getElementById("overlayPosition").value,
+        align: document.getElementById("overlayAlign").value,
+        fontFamily: document.getElementById("fontFamily").value,
+        fontSize: document.getElementById("fontSize").value
+      },
+      slides
+    };
+  }
+
+  saveConfig.onclick = () => {
+    const config = gatherConfig();
+    console.log("Saved Config:", config);
+    alert("Configuration saved to memory!");
+  };
+
+  exportConfig.onclick = () => {
+    const config = gatherConfig();
+    const blob = new Blob([JSON.stringify(config, null, 2)], { type: "application/json" });
+    const link = document.createElement("a");
+    link.href = URL.createObjectURL(blob);
+    link.download = "kindledash_config.json";
+    link.click();
+  };
+
+  numSlides.addEventListener("input", updateSlides);
+  updateSlides();
+</script>
+
+</body>
+</html>
