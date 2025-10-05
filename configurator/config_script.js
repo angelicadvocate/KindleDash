@@ -1,110 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>KindleDash Configurator</title>
-<link rel="stylesheet" href="style.css" />
-
-</head>
-<body>
-
-<header>
-  <h1>⚡ KindleDash Configurator</h1>
-  <div class="header-buttons">
-    <button class="icon-btn" id="saveConfig">💾 Save</button>
-    <button class="icon-btn" id="exportConfig">📤 Export</button>
-    <button class="icon-btn" id="settingsToggle" title="Global Settings">⚙️</button>
-  </div>
-</header>
-
-<div id="globalSettings">
-  <h2>🌐 Global Settings</h2>
-  <label>
-    Global Invert
-    <input type="checkbox" id="globalInvert" />
-    <span class="tooltip">Invert all images by default</span>
-  </label>
-
-  <label>
-    Default Scrape Interval (minutes)
-    <input type="number" id="defaultInterval" value="5" min="1" />
-  </label>
-
-  <label>
-    Max Retries
-    <input type="number" id="maxRetries" value="3" min="0" />
-  </label>
-
-  <label>
-    Cache Duration (minutes)
-    <input type="number" id="cacheDuration" value="30" min="0" />
-  </label>
-</div>
-
-<div class="section">
-  <h2>🖼️ Slides Configuration</h2>
-  <label>
-    Number of Slides
-    <input type="number" id="numSlides" min="1" max="4" value="1" />
-  </label>
-  <div id="slidesContainer"></div>
-</div>
-
-<div class="section">
-  <h2>⏰ Overlay Settings</h2>
-
-  <label>
-    Show Clock
-    <input type="checkbox" id="showClock" />
-  </label>
-
-  <label>
-    Show Date
-    <input type="checkbox" id="showDate" />
-  </label>
-
-  <label>
-    Overlay Position
-    <select id="overlayPosition">
-      <option value="none">None</option>
-      <option value="top">Top third</option>
-      <option value="bottom">Bottom third</option>
-    </select>
-  </label>
-
-  <label>
-    Text Alignment
-    <select id="overlayAlign">
-      <option value="center">Centered</option>
-      <option value="left">Left</option>
-      <option value="right">Right</option>
-    </select>
-  </label>
-
-  <label>
-    Font Style
-    <select id="fontFamily">
-      <option value="sans-serif">Sans</option>
-      <option value="serif">Serif</option>
-      <option value="monospace">Mono</option>
-    </select>
-  </label>
-
-  <label>
-    Font Size
-    <select id="fontSize">
-      <option value="small">Small</option>
-      <option value="medium" selected>Medium</option>
-      <option value="large">Large</option>
-    </select>
-  </label>
-</div>
-
-<script>
   const settingsToggle = document.getElementById("settingsToggle");
   const globalSettings = document.getElementById("globalSettings");
-  const numSlides = document.getElementById("numSlides");
   const slidesContainer = document.getElementById("slidesContainer");
   const saveConfig = document.getElementById("saveConfig");
   const exportConfig = document.getElementById("exportConfig");
@@ -113,6 +8,38 @@
     globalSettings.style.display =
       globalSettings.style.display === "none" ? "block" : "none";
   };
+
+  const shareBtn = document.getElementById("shareBtn");
+  const shareMenu = document.querySelector(".share-dropdown .share-menu");
+
+shareBtn.onclick = () => {
+  shareMenu.style.display = shareMenu.style.display === "block" ? "none" : "block";
+};
+
+const posButtons = document.querySelectorAll('.pos-btn');
+
+posButtons.forEach(btn => {
+  btn.addEventListener('click', () => {
+    // Remove active from all buttons
+    posButtons.forEach(b => b.classList.remove('active'));
+    // Add active to clicked button
+    btn.classList.add('active');
+
+    // Optional: store value in variable or input
+    const selectedPosition = btn.dataset.pos;
+    console.log('Selected Position:', selectedPosition);
+    // You can also update a hidden input if your script expects a value
+    // document.getElementById('overlayPosition').value = selectedPosition;
+  });
+});
+
+
+// Optional: close dropdown if clicking outside
+window.addEventListener("click", function(e) {
+  if (!shareBtn.contains(e.target) && !shareMenu.contains(e.target)) {
+    shareMenu.style.display = "none";
+  }
+});
 
   function createSlide(index) {
     const div = document.createElement("div");
@@ -150,9 +77,8 @@
     return div;
   }
 
-  function updateSlides() {
+  function updateSlides(count) {
     slidesContainer.innerHTML = "";
-    const count = parseInt(numSlides.value);
     for (let i = 0; i < count; i++) {
       slidesContainer.appendChild(createSlide(i));
     }
@@ -199,9 +125,15 @@
     link.click();
   };
 
-  numSlides.addEventListener("input", updateSlides);
-  updateSlides();
-</script>
+  document.getElementById("resolution").addEventListener("change", function () {
+    const customInputs = document.getElementById("customResolutionInputs");
+    customInputs.style.display = this.value === "custom" ? "flex" : "none";
+  });
 
-</body>
-</html>
+  document.querySelectorAll('input[name="numSlides"]').forEach(radio => {
+    radio.addEventListener('change', e => {
+      updateSlides(parseInt(e.target.value));
+    });
+  });
+
+  updateSlides(1);

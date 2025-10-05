@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>KindleDash Editor</title>
+<link href="https://fonts.googleapis.com/css2?family=Indie+Flower:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+<link rel="stylesheet" href="config_style.css" />
+</head>
+<body>
+
+<header>
+  <div class="header-left">
+    <img src="/static_assets/mascot.png" alt="Angelito" class="floating-mascot-mini" onclick="window.open('https://github.com/angelicadvocate', '_blank')" title="Angelito" />
+    <h1>KindleDash Editor</h1>
+  </div>
+
+  <div class="header-top">
+    <div class="header-support">
+      <div class="button-row">
+        <a href="https://streamelements.com/angelicadvocate/tip" target="_blank"><button>Tip on StreamElements/Paypal</button></a>
+        <a href="https://github.com/angelicadvocate/KindleDash" target="_blank"><button>Star Us on GitHub</button></a>
+      </div>
+    </div>
+
+<div class="header-buttons">
+  <button class="icon-btn" id="saveConfig"><i class="fas fa-floppy-disk"></i> Save</button>
+  <button class="icon-btn" id="exportConfig"><i class="fas fa-file-export"></i> Export</button>
+
+  <div class="share-dropdown">
+    <button class="icon-btn" id="shareBtn"><i class="fas fa-share-nodes"></i> Share</button>
+    <div class="share-menu">
+      <button onclick="shareToTwitter()"><i class="fab fa-twitter"></i> Twitter</button>
+      <button onclick="shareToFacebook()"><i class="fab fa-facebook"></i> Facebook</button>
+      <button onclick="shareToReddit()"><i class="fab fa-reddit"></i> Reddit</button>
+      <button onclick="shareToDiscord()"><i class="fab fa-discord"></i> Discord</button>
+    </div>
+  </div>
+
+  <button class="icon-btn" id="settingsToggle" title="Global Settings"><i class="fas fa-gear"></i></button>
+</div>
+  </div>
+</header>
+
+<!-- Global Settings -->
+<div id="globalSettings">
+  <h2>Global Settings</h2>
+  <label>
+    Global Invert
+    <input type="checkbox" id="globalInvert" />
+    <span class="tooltip">Invert all images by default</span>
+  </label>
+
+  <label>
+    Default Scrape Interval (minutes)
+    <input type="number" id="defaultInterval" value="5" min="1" />
+  </label>
+
+  <label>
+    Max Retries
+    <input type="number" id="maxRetries" value="3" min="0" />
+  </label>
+
+  <label>
+    Cache Duration (minutes)
+    <input type="number" id="cacheDuration" value="30" min="0" />
+  </label>
+</div>
+
+
+<div class="container">
+
+<!-- Top Toolbar -->
+<div class="top-toolbar">
+<div class="toolbar-card" id="resolutionSlidesCard">
+  <h3>Resolution</h3>
+  <select id="resolution">
+    <option value="800x600">Kindle 4th Gen – 800×600</option>
+    <option value="1024x758">Kindle Paperwhite – 1024×758</option>
+    <option value="1440x1080">Kindle Oasis – 1440×1080</option>
+    <option value="1072x1448">Kobo Clara HD – 1072×1448</option>
+    <option value="1440x1080">Nook Glowlight 3 – 1440×1080</option>
+    <option value="custom">Custom</option>
+  </select>
+  <div id="customResolutionInputs" class="custom-resolution" style="display:none;">
+    <input type="number" id="customWidth" placeholder="Width (px)" min="100" />
+    ×
+    <input type="number" id="customHeight" placeholder="Height (px)" min="100" />
+  </div>
+
+  <h3>Slides</h3>
+  <div class="slide-radios">
+    <label><input type="radio" name="numSlides" value="1" checked /> 1</label>
+    <label><input type="radio" name="numSlides" value="2" /> 2</label>
+    <label><input type="radio" name="numSlides" value="3" /> 3</label>
+    <label><input type="radio" name="numSlides" value="4" /> 4</label>
+  </div>
+</div>
+
+<!-- Overlay Card -->
+<div class="toolbar-card overlay" id="overlayCard">
+
+  <!-- Two columns container -->
+  <div class="overlay-columns">
+
+    <!-- Left Column -->
+    <div class="overlay-column">
+      <h3>Overlay</h3>
+      <!-- Checkboxes row inside left column -->
+      <div class="checkboxes-row">
+        <label><input type="checkbox" id="showClock" /> Show Clock</label>
+        <label><input type="checkbox" id="showDate" /> Show Date</label>
+      </div>
+
+      <!-- Position buttons -->
+      <div class="position-buttons">
+        <label>Overlay Position</label>
+        <button class="pos-btn" data-pos="none">None</button>
+        <button class="pos-btn" data-pos="top">Top third</button>
+        <button class="pos-btn" data-pos="bottom">Bottom third</button>
+      </div>
+    </div>
+
+    <!-- Right Column -->
+<div class="overlay-column">
+  <div class="label-select">
+    <label for="overlayAlign">Text Alignment</label>
+    <select id="overlayAlign">
+      <option value="center">Centered</option>
+      <option value="left">Left</option>
+      <option value="right">Right</option>
+    </select>
+  </div>
+
+  <div class="label-select">
+    <label for="fontFamily">Font Style</label>
+    <select id="fontFamily">
+      <option value="sans-serif">Sans</option>
+      <option value="serif">Serif</option>
+      <option value="monospace">Mono</option>
+    </select>
+  </div>
+
+  <div class="label-select">
+    <label for="fontSize">Font Size</label>
+    <select id="fontSize">
+      <option value="small">Small</option>
+      <option value="medium" selected>Medium</option>
+      <option value="large">Large</option>
+    </select>
+  </div>
+</div>
+
+
+  </div> <!-- end overlay-columns -->
+</div> <!-- end toolbar-card overlay -->
+
+</div>
+<!-- Slides Container -->
+<div id="slidesContainer"></div>
+
+</div>
+
+<script src="config_script.js"></script>
+</body>
+</html>
