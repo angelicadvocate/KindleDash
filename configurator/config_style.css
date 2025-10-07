@@ -274,14 +274,6 @@ header h1 {
   gap: 0.75rem;     /* space between items in the column */
 }
 
-/* Keep checkboxes in a row */
-.checkboxes-row {
-  display: flex;
-  gap: 1rem;
-  margin-bottom: 1rem;
-  align-items: center;
-}
-
 #resolutionSlidesCard {
   flex: 1 1 39%;        /* allow shrinking if needed */
   min-width: 200px;     /* slightly smaller to fit */
@@ -300,26 +292,6 @@ header h1 {
   border-radius: 0.5rem;
   margin-top: 1rem;
   background: #fafafa;
-}
-
-.slide-radios {
-  display: flex;
-  gap: 12px;
-  margin-top: 6px;
-}
-
-.slide-radios label {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  cursor: pointer;
-}
-
-.toggle {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  margin-top: 0.5rem;
 }
 
 .testSlide {
@@ -405,4 +377,63 @@ header h1 {
     justify-content: flex-start;
     gap: 0.5rem;
   }
+}
+
+.slide-count-buttons {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.slide-count-buttons span {
+  font-weight: bold;
+  margin-right: 0.5rem;
+}
+
+.slide-btn {
+  padding: 0.4rem 0.8rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background-color: #f3f4f6;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.slide-btn:hover {
+  background-color: #e5e7eb;
+}
+
+.slide-btn.active {
+  background-color: #2563eb;
+  color: white;
+  border-color: #1d4ed8;
+}
+
+.slides-title { margin-top: 1rem; } /* adjust value to taste */
+
+.toggle-buttons-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.toggle-btn {
+  padding: 0.4rem 0.8rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background-color: #f3f4f6;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+
+.toggle-btn:hover {
+  background-color: #e5e7eb;
+}
+
+.toggle-btn.active {
+  background-color: #2563eb;
+  color: white;
+  border-color: #1d4ed8;
 }

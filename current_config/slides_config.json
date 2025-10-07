@@ -1,0 +1,44 @@
+{
+  "global": {
+    "invert": false,
+    "defaultInterval": 5,
+    "maxRetries": 3,
+    "cacheDuration": 30,
+    "slideFrequency": 60
+  },
+  "overlay": {
+    "showTime": false,
+    "showDate": false,
+    "position": "none",
+    "align": "center",
+    "fontFamily": "sans-serif",
+    "fontSize": "medium"
+  },
+  "resolution": "800x600",
+  "slides": [
+    {
+      "url": "",
+      "invert": false,
+      "interval": 5,
+      "name": "slide1"
+    },
+    {
+      "url": "",
+      "invert": false,
+      "interval": 5,
+      "name": "slide2"
+    },
+    {
+      "url": "",
+      "invert": false,
+      "interval": 5,
+      "name": "slide3"
+    },
+    {
+      "url": "",
+      "invert": false,
+      "interval": 5,
+      "name": "slide4"
+    }
+  ]
+}

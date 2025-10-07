@@ -19,25 +19,27 @@
   <div class="header-top">
     <div class="header-support">
       <div class="button-row">
-        <a href="https://streamelements.com/angelicadvocate/tip" target="_blank"><button>Tip on StreamElements/Paypal</button></a>
-        <a href="https://github.com/angelicadvocate/KindleDash" target="_blank"><button>Star Us on GitHub</button></a>
+        <a href="https://streamelements.com/angelicadvocate/tip" target="_blank">
+          <button class="icon-btn">
+            <i class="fas fa-gift"></i> Tip on StreamElements/Paypal
+          </button>
+        </a>
+          <div class="share-dropdown">
+            <button class="icon-btn" id="shareBtn"><i class="fas fa-share-nodes"></i> Share</button>
+            <div class="share-menu">
+              <button onclick="shareToTwitter()"><i class="fab fa-twitter"></i> Twitter</button>
+              <button onclick="shareToFacebook()"><i class="fab fa-facebook"></i> Facebook</button>
+              <button onclick="shareToReddit()"><i class="fab fa-reddit"></i> Reddit</button>
+              <button onclick="shareToDiscord()"><i class="fab fa-discord"></i> Discord</button>
+            </div>
+          </div>
       </div>
     </div>
 
 <div class="header-buttons">
   <button class="icon-btn" id="saveConfig"><i class="fas fa-floppy-disk"></i> Save</button>
   <button class="icon-btn" id="exportConfig"><i class="fas fa-file-export"></i> Export</button>
-
-  <div class="share-dropdown">
-    <button class="icon-btn" id="shareBtn"><i class="fas fa-share-nodes"></i> Share</button>
-    <div class="share-menu">
-      <button onclick="shareToTwitter()"><i class="fab fa-twitter"></i> Twitter</button>
-      <button onclick="shareToFacebook()"><i class="fab fa-facebook"></i> Facebook</button>
-      <button onclick="shareToReddit()"><i class="fab fa-reddit"></i> Reddit</button>
-      <button onclick="shareToDiscord()"><i class="fab fa-discord"></i> Discord</button>
-    </div>
-  </div>
-
+  <button class="icon-btn" id="importConfig"><i class="fas fa-file-import"></i> Import</button>
   <button class="icon-btn" id="settingsToggle" title="Global Settings"><i class="fas fa-gear"></i></button>
 </div>
   </div>
@@ -49,10 +51,23 @@
   <label>
     Global Invert
     <input type="checkbox" id="globalInvert" />
-    <span class="tooltip">Invert all images by default</span>
+    <span class="tooltip">Invert all images and overlay by default</span>
   </label>
 
   <label>
+    Orientation
+    <select id="orientation">
+      <option value="horizontal" selected>Horizontal</option>
+      <option value="vertical">Vertical</option>
+    </select>
+  </label>
+
+  <label>
+    Slide Rotation Frequency (seconds)
+    <input type="number" id="defaultInterval" value="60" min="1" />
+  </label>
+
+    <label>
     Default Scrape Interval (minutes)
     <input type="number" id="defaultInterval" value="5" min="1" />
   </label>
@@ -88,13 +103,13 @@
     ×
     <input type="number" id="customHeight" placeholder="Height (px)" min="100" />
   </div>
-
-  <h3>Slides</h3>
-  <div class="slide-radios">
-    <label><input type="radio" name="numSlides" value="1" checked /> 1</label>
-    <label><input type="radio" name="numSlides" value="2" /> 2</label>
-    <label><input type="radio" name="numSlides" value="3" /> 3</label>
-    <label><input type="radio" name="numSlides" value="4" /> 4</label>
+  
+  <h3 class="slides-title">Slides</h3>
+  <div class="slide-count-buttons">
+     <button class="slide-btn active" data-slides="1">1</button>
+     <button class="slide-btn" data-slides="2">2</button>
+     <button class="slide-btn" data-slides="3">3</button>
+     <button class="slide-btn" data-slides="4">4</button>
   </div>
 </div>
 
@@ -108,15 +123,17 @@
     <div class="overlay-column">
       <h3>Overlay</h3>
       <!-- Checkboxes row inside left column -->
-      <div class="checkboxes-row">
-        <label><input type="checkbox" id="showClock" /> Show Clock</label>
-        <label><input type="checkbox" id="showDate" /> Show Date</label>
-      </div>
+    <div class="toggle-buttons-row">
+      <label>Time/Date</label>
+      <button class="toggle-btn" id="showTimeBtn" data-target="showTime">Show Time</button>
+      <button class="toggle-btn" id="showDateBtn" data-target="showDate">Show Date</button>
+    </div>
+
 
       <!-- Position buttons -->
       <div class="position-buttons">
         <label>Overlay Position</label>
-        <button class="pos-btn" data-pos="none">None</button>
+        <button class="pos-btn active" data-pos="none">None</button>
         <button class="pos-btn" data-pos="top">Top third</button>
         <button class="pos-btn" data-pos="bottom">Bottom third</button>
       </div>
