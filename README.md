@@ -21,7 +21,8 @@ KindleDash turns your non-touch Kindle (or similar Linux-based device) into a cu
 
 1. **Enable USBNet on your Kindle** and connect it to a computer.  
 2. **Enable wireless SSH access** to the device.  
-3. Determine the root password for your device. This may vary by model/serial number; refer to guides or root password generators.  
+3. Determine the root password for your device and SSH into the device.
+   (This may vary by model/serial number; refer to guides or root password generators.)
 4. Create a script to fetch and display the dashboard image:  
 ```bash
 nano /mnt/us/screenfetch.sh
