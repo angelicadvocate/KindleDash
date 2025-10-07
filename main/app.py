@@ -3,6 +3,7 @@ import json
 import time
 import asyncio
 from flask import Flask, send_file
+from flask import send_from_directory
 from PIL import Image, ImageOps
 from pathlib import Path
 from playwright.async_api import async_playwright
@@ -14,6 +15,16 @@ app = Flask(__name__)
 CONFIG_FILE = Path('current_config/slides_config.json')
 TMP_DIR = Path('/current_image/currentimage')
 TMP_DIR.mkdir(parents=True, exist_ok=True)
+CONFIGURATOR_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '../configurator'))
+
+
+@app.route('/configurator/<path:filename>')
+def configurator_files(filename):
+    return send_from_directory(CONFIGURATOR_DIR, filename)
+
+@app.route('/')
+def configurator_index():
+    return send_from_directory(CONFIGURATOR_DIR, 'config_index.html')
 
 # Cache last screenshot times per slide
 last_screenshot = {}
@@ -179,7 +190,7 @@ def get_current_slide_idx(num_slides, frequency):
     now = int(time.time())
     return (now // frequency) % num_slides
 
-@app.route('/')
+@app.route('/slides')
 def serve_slide():
     config = load_config()
     if not config:
