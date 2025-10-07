@@ -19,8 +19,8 @@ KindleDash turns your non-touch Kindle (or similar Linux-based device) into a cu
 
 > **Note:** These instructions focus on non-touch Kindles. Other devices may require different steps. See [MobileRead](https://www.mobileread.com/) for detailed jailbreak/root instructions for your specific device.
 
-1. **Enable USBNet on your Kindle** and connect it to a computer.  
-2. **Enable wireless SSH access** to the device.  
+1. Connect your device to a computer and **enable USBNet on your Kindle**.
+2. **Enable wireless SSH access** to the device.
 3. Determine the root password for your device and SSH into the device.
    (This may vary by model/serial number; refer to guides or root password generators.)
 4. Create a script to fetch and display the dashboard image:  
