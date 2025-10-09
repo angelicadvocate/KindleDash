@@ -1,0 +1,154 @@
+/* === Header === */
+header {
+  background: #111827;
+  color: white;
+  padding: 1rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.35);
+  min-height: 50px;
+  margin-bottom: 1.5rem;
+  flex-wrap: nowrap;
+}
+
+header h1 {
+  font-size: clamp(2rem, 4vw + 1rem, 4rem);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: 'Indie Flower', cursive;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.floating-mascot-mini {
+  cursor: pointer;
+  animation: float-mini 3s ease-in-out infinite;
+  width: clamp(40px, 5vw + 10px, 60px);
+}
+
+@keyframes float-mini {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-5px); }
+  100% { transform: translateY(0px); }
+}
+
+@media (max-width: 480px) {
+  .floating-mascot-mini { display: none; }
+}
+
+.header-top {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.5rem;
+}
+
+.header-buttons,
+.header-support .button-row {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.header-support {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-bottom: 0.5rem;
+}
+
+.header-support p {
+  margin: 0;
+  font-weight: bold;
+}
+
+.header-support .button-row button {
+  background-color: #374151;
+  color: white;
+  font-size: 0.85rem;
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.header-support .button-row button:hover,
+.icon-btn:hover {
+  background-color: #2563eb;
+}
+
+.icon-btn i {
+  margin-right: 0.3rem;
+  font-size: 1.2rem;
+}
+
+.icon-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
+  background: #374151;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 0.5rem 0.8rem;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background 0.2s;
+}
+
+.share-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.share-dropdown .share-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: #374151;
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+  z-index: 100;
+  min-width: 140px;
+  flex-direction: column;
+}
+
+.share-dropdown .share-menu button {
+  display: block;
+  width: 100%;
+  padding: 0.5rem 1rem;
+  background: none;
+  border: none;
+  color: white;
+  text-align: left;
+  cursor: pointer;
+}
+
+.share-dropdown .share-menu button:hover {
+  background-color: #2563eb;
+}
+
+@media (max-width: 800px) {
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .header-top {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 0.5rem;
+  }
+}

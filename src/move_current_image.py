@@ -5,7 +5,7 @@ from pathlib import Path
 import shutil
 
 # Base path of the project
-BASE_DIR = Path(__file__).resolve().parent.parent  # /app
+BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Paths
 CACHE_DIR = BASE_DIR / "image_cache"

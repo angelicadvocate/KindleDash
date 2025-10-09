@@ -1,0 +1,39 @@
+/* === Base Styles === */
+body {
+  font-family: system-ui, sans-serif;
+  background: #e8e8e8;
+  margin: 0;
+  padding: 0;
+}
+
+h1, h2, h3 {
+  margin: 0;
+}
+
+label {
+  display: block;
+  margin-top: 0.5rem;
+}
+
+input[type="text"],
+input[type="number"],
+select {
+  width: 100%;
+  padding: 0.4rem;
+  border-radius: 0.3rem;
+  border: 1px solid #ccc;
+  margin-top: 0.25rem;
+}
+
+button {
+  padding: 0.6rem 1rem;
+  border: none;
+  border-radius: 0.3rem;
+  cursor: pointer;
+}
+
+.tooltip {
+  font-size: 0.85rem;
+  color: #555;
+  margin-left: 0.3rem;
+}

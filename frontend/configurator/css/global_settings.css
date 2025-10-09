@@ -1,0 +1,21 @@
+#globalSettings {
+  background: #e5e7eb;
+  padding: 1rem;
+  display: none;
+  border-bottom: 1px solid #ccc;
+}
+
+.section {
+  background: white;
+  margin: 1rem;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+}
+
+.section h2 {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: 0;
+}

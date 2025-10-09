@@ -1,0 +1,35 @@
+<header>
+    <div class="header-left">
+        <img src="../assets/mascot.png" alt="Angelito" class="floating-mascot-mini"
+            onclick="window.open('https://github.com/angelicadvocate', '_blank')" title="Angelito" />
+        <h1>KindleDash Editor</h1>
+    </div>
+
+    <div class="header-top">
+        <div class="header-support">
+            <div class="button-row">
+                <a href="https://streamelements.com/angelicadvocate/tip" target="_blank">
+                    <button class="icon-btn">
+                        <i class="fas fa-gift"></i> Tip on StreamElements/Paypal
+                    </button>
+                </a>
+                <div class="share-dropdown">
+                    <button class="icon-btn" id="shareBtn"><i class="fas fa-share-nodes"></i> Share</button>
+                    <div class="share-menu">
+                        <button onclick="shareToTwitter()"><i class="fab fa-twitter"></i> Twitter</button>
+                        <button onclick="shareToFacebook()"><i class="fab fa-facebook"></i> Facebook</button>
+                        <button onclick="shareToReddit()"><i class="fab fa-reddit"></i> Reddit</button>
+                        <button onclick="shareToDiscord()"><i class="fab fa-discord"></i> Discord</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="header-buttons">
+            <button class="icon-btn" id="saveConfig"><i class="fas fa-floppy-disk"></i> Save</button>
+            <button class="icon-btn" id="exportConfig"><i class="fas fa-file-export"></i> Export</button>
+            <button class="icon-btn" id="importConfig"><i class="fas fa-file-import"></i> Import</button>
+            <button class="icon-btn" id="settingsToggle" title="Global Settings"><i class="fas fa-gear"></i></button>
+        </div>
+    </div>
+</header>

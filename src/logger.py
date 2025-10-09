@@ -7,7 +7,7 @@ from datetime import datetime, timedelta
 from pathlib import Path
 
 # Base path of the project
-BASE_DIR = Path(__file__).resolve().parent.parent  # assumes script is in /app/main
+BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Directories
 CACHE_DIR = BASE_DIR / "image_cache"

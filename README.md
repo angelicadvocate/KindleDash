@@ -1,3 +1,16 @@
+# ⚠️ WARNING! ⚠️
+
+**This project is in active development and is not yet ready for production use.**  
+
+- Features may be incomplete or unstable.  
+- Breaking changes may occur at any time.  
+- Use at your own risk.  
+- Intended for testing, experimentation, and development only.  
+
+---
+
+**Version:** 0.1.0-alpha
+
 # KindleDash
 **Wireless dashboard for non-touch Kindles: weather, metrics, and custom slides. Compatible with most Linux-based devices, including Nook, Kobo, and custom setups.**
 
@@ -29,7 +42,7 @@ nano /mnt/us/screenfetch.sh
 ```
 5. Add the following contents:
 ```bash
-curl URL_FOR_IMAGE_FILE -o currentimage.png
+curl HOST_IP_ADDRESS:PORT/slides -o currentimage.png
 eips -c
 eips -c
 eips -g currentimage.png

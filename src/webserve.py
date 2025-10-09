@@ -4,8 +4,7 @@ from pathlib import Path
 
 app = Flask(__name__)
 
-# Paths
-CONFIGURATOR_DIR = Path(__file__).resolve().parent.parent / "configurator"
+CONFIGURATOR_DIR = Path(__file__).resolve().parent.parent / "frontend" / "configurator"
 CURRENT_IMAGE_DIR = Path(__file__).resolve().parent.parent / "current_image"
 CURRENT_IMAGE_FILE = CURRENT_IMAGE_DIR / "currentimage.png"
 
@@ -15,7 +14,7 @@ def configurator_files(filename):
 
 @app.route("/")
 def configurator_index():
-    return send_from_directory(CONFIGURATOR_DIR, "config_index.html")
+    return send_from_directory(CONFIGURATOR_DIR, "configurator.html")
 
 @app.route("/slides")
 def serve_slide():

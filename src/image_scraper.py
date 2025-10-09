@@ -7,7 +7,7 @@ from playwright.async_api import async_playwright
 from PIL import Image, ImageOps, ImageEnhance
 
 # Base path of the project
-BASE_DIR = Path(__file__).resolve().parent.parent  # /app
+BASE_DIR = Path(__file__).resolve().parent.parent
 print(f"[ImageScraper] BASE_DIR: {BASE_DIR}")
 
 # Paths
