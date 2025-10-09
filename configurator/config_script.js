@@ -69,6 +69,7 @@ function createSlide(index) {
     <h3>Slide ${index + 1}</h3>
     <label>
       URL
+      <span class="tooltip">The webpage or dashboard you want to display on this slide.</span>
       <input type="text" placeholder="https://example.com" class="slideUrl" />
     </label>
     <div class="toggle">
@@ -77,6 +78,7 @@ function createSlide(index) {
     </div>
     <label>
       Scrape Interval (minutes)
+      <span class="tooltip">How often this slide refreshes content from the URL.</span>
       <input type="number" value="5" min="1" class="slideInterval" />
     </label>
     <button class="testSlide">Test Slide ${index + 1}</button>

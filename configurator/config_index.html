@@ -52,7 +52,7 @@
   <label>
     Global Invert
     <input type="checkbox" id="globalInvert" />
-    <span class="tooltip">Invert all images and overlay by default</span>
+    <span class="tooltip">When enabled, all images and overlays will be inverted by default. Individual slides can override this setting.</span>
   </label>
 
   <label>
@@ -65,6 +65,7 @@
 
   <label>
     Slide Rotation Frequency (seconds)
+    <span class="tooltip">How often this slide is shown before switching to the next one.</span>
     <input type="number" id="defaultInterval" value="60" min="1" />
   </label>
 
@@ -75,12 +76,14 @@
 
   <label>
     Max Retries
+    <span class="tooltip">Number of times to retry loading a slide if it fails.</span>
     <input type="number" id="maxRetries" value="3" min="0" />
   </label>
 
   <label>
     Cache Duration (minutes)
-    <input type="number" id="cacheDuration" value="30" min="0" />
+    <span class="tooltip">Store a copy of the slide content to load faster. (Not recommended if using the date/time overlay, as it may show outdated timestamps.)</span>
+    <input type="number" id="cacheDuration" value="0" min="0" />
   </label>
 </div>
 

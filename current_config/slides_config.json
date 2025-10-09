@@ -1,10 +1,14 @@
 {
   "global": {
     "invert": false,
-    "defaultInterval": 5,
+    "defaultInterval": 1,
     "maxRetries": 3,
     "cacheDuration": 30,
-    "slideFrequency": 60
+    "slideFrequency": 60,
+    "timezone": "UTC",
+    "boostContrast": false,
+    "convertbw": false,
+    "grayscale": false
   },
   "overlay": {
     "showTime": false,
@@ -17,28 +21,32 @@
   "resolution": "800x600",
   "slides": [
     {
-      "url": "",
+      "url": "https://www.google.com",
       "invert": false,
-      "interval": 5,
-      "name": "slide1"
+      "interval": 1,
+      "name": "slide1",
+      "enabled": true
+    },
+    {
+      "url": "https://www.weather.com",
+      "invert": false,
+      "interval": 2,
+      "name": "slide2",
+      "enabled": true
     },
     {
       "url": "",
       "invert": false,
-      "interval": 5,
-      "name": "slide2"
+      "interval": 1,
+      "name": "slide3",
+      "enabled": false
     },
     {
       "url": "",
       "invert": false,
-      "interval": 5,
-      "name": "slide3"
-    },
-    {
-      "url": "",
-      "invert": false,
-      "interval": 5,
-      "name": "slide4"
+      "interval": 1,
+      "name": "slide4",
+      "enabled": false
     }
   ]
 }

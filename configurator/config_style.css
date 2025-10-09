@@ -1,7 +1,7 @@
 /* === Base Styles === */
 body {
   font-family: system-ui, sans-serif;
-  background: #f0f0f0;
+  background: #e8e8e8;
   margin: 0;
   padding: 0;
 }
@@ -411,6 +411,18 @@ header h1 {
 }
 
 .slides-title { margin-top: 1rem; } /* adjust value to taste */
+
+.toggle {
+  display: flex;
+  align-items: center;
+  gap: 6px; /* small space between checkbox and tooltip */
+}
+
+.toggle label {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
 
 .toggle-buttons-row {
   display: flex;
