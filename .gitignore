@@ -49,7 +49,6 @@ current_config/cycling_state.json
 !image_cache/.gitkeep
 
 # Logs
-*.log
 logs/
 *.err
 

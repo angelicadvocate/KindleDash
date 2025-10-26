@@ -21,7 +21,12 @@
 **Implementation Considerations:**
 ```python
 # Suggested improvements:
-# 1. Validate index bounds
+# 1. Validate index bounds and handle empty list
+if not enabled_slides:
+    print("[MoveImage] No enabled slides, sleeping...")
+    time.sleep(60)
+    continue
+    
 if current_index >= len(enabled_slides):
     current_index = 0
     
@@ -39,6 +44,8 @@ while attempts < max_attempts:
         attempts += 1
 
 # 3. State persistence
+STATE_FILE = BASE_DIR / "current_config" / "cycling_state.json"
+
 def save_state(index):
     state = {'current_index': index, 'timestamp': time.time()}
     with open(STATE_FILE, 'w') as f:
