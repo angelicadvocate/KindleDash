@@ -1,0 +1,62 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+*.log
+
+# Virtual Environment
+venv/
+ENV/
+env/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# KindleDash specific
+image_cache/
+current_image/*.png
+current_image/*.jpg
+current_config/cycling_state.json
+
+# Keep directory structure but ignore images
+!current_image/.gitkeep
+!image_cache/.gitkeep
+
+# Logs
+*.log
+logs/
+*.err
+
+# Temporary files
+*.tmp
+*.temp
+/tmp/
+
+# Docker
+*.pid
